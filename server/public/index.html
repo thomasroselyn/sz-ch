@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vendors/jquery-3.4.0.js"></script>
+    <script src="scripts/client.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Sezzle Challenge | Thomas Roselyn</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid">
+            <h1>Sezzle Challenge</h1>
+            <p>Thomas Roselyn</p>
+        </div>
+        <div id="inputArea" class="form-inline">
+            <p class="label">Expression to Calculate:</p>
+            <input id="expressionIn" type="text" class="form-control col col-2" placeholder="examples: 5 + 5 or 3x_4">
+            <button id="equalsBtn" class="btn btn-primary">=</button>
+            <button id="clearBtn" class="btn btn-secondary">C</button>
+        </div>
+        <div id="historyArea">
+            <p class="label">Last 10 Calculations:</p>
+            <ul id="history">
+                <!-- jQuery will append history of results here -->
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
