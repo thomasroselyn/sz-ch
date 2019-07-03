@@ -1,5 +1,10 @@
+//socket setup
+const socket = io();
+socket.on('getCalcHistory', getCalcHistory)
+
 $(onReady);
 
+//get data and set up button listeners
 function onReady() {
     getCalcHistory();
 
@@ -24,12 +29,14 @@ function postToCalculator() {
         }).then(response => {
             //then, get the result
             console.log('expression sent to server:', response);
-            getCalcHistory();
+            // getCalcHistory() -- not needed with socket update;
+            //clear input
             $('#expressionIn').val('');
         }).catch(err => {
             console.log('error sending expression to server:', err);
         });
     } else {
+        //alert user if input left empty
         alert('must enter expression');
     }
 } //end postToCalculator

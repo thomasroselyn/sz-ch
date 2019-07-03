@@ -1,6 +1,6 @@
-let calculateExpression = (expression) => {
+let calculateExpression = (expressionIn) => {
     
-    console.log('expression received by calculator:', expression);
+    console.log('expression received by calculator:', expressionIn);
 
     //separate out expression components in an object
     let expObject = {
@@ -10,8 +10,9 @@ let calculateExpression = (expression) => {
         result: ''
     };
 
-    //strip out special characters, replace x with *
-    expression = expression.replace(/_/g, '');
+    //strip out spaces and special characters, replace x with *
+    expressionIn = expressionIn.replace(/\s/g, '');
+    expression = expressionIn.replace(/_/g, '');
     expression = expression.replace(/!/g, '');
     expression = expression.replace(/@/g, '');
     expression = expression.replace(/#/g, '');
@@ -59,7 +60,7 @@ let calculateExpression = (expression) => {
             break;
     }
     
-    return `${expObject.firstNumber} ${expObject.operator} ${expObject.secondNumber} = ${expObject.result}`;
+    return `${expressionIn} = ${expObject.result}`;
 
 } //end calculateObject
 
