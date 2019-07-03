@@ -1,13 +1,40 @@
 const pg = require('pg');
+const url = require('url');
 
-const Pool = pg.Pool;
+let config = {};
 
-const pool = new Pool({
-    database: process.env.DATABASE_URL || 'sezzle_challenge',
-    host: 'ec2-23-21-109-177.compute-1.amazonaws.com' || 'localhost',
-    port: process.env.PGPORT || 5432,
-    max: 10,
-    idleTimeoutMillis: 10000
+if (process.env.DATABASE_URL) {
+    const params = url.parse(process.env.DATABASE_URL);
+    const auth = params.auth.split(':');
+
+    config = {
+        user: auth[0],
+        password: auth[1],
+        host: params.hostname,
+        port: params.port,
+        database: params.pathname.split('/')[1],
+        ssl: true,
+        max: 10,
+        idleTimeoutMillis: 30000
+    };
+
+} else {
+
+    config = {
+        host: 'localhost',
+        port: 5432,
+        database: 'sezzle_challenge',
+        max: 10,
+        idleTimeoutMillis: 30000
+    };
+    
+}
+
+const pool = new pg.Pool(config);
+
+pool.on('error', (err) => {
+    console.log('Unexpected error on idle client', err);
+    process.exit(-1);
 });
 
 module.exports = pool;
