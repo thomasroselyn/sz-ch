@@ -20,10 +20,14 @@ function postToCalculator() {
         $.ajax({
             type: 'POST',
             url: '/calc',
-            data: $('#expressionIn')
-        }).then(function (response) {
+            data: {expression: $('#expressionIn').val()}
+        }).then(response => {
             //then, get the result
+            console.log('expression sent to server:', response);
             getCalcHistory();
+            $('#expressionIn').val('');
+        }).catch(err => {
+            console.log('error sending expression to server:', err);
         });
     } else {
         alert('must enter expression');
@@ -35,9 +39,12 @@ function getCalcHistory() {
     $.ajax({
         type: 'GET',
         url: '/calc'
-    }).then(function(response) {
+    }).then(response => {
         //add to history section
+        console.log('calc history received from server')
         updateHistory(response);
+    }).catch(err => {
+        console.log('error getting calc history from server:', err);
     });
 } //end getCalcHistory
 

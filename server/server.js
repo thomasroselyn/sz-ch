@@ -27,13 +27,16 @@ app.get('/calc', (req, res) => {
 //post route for /calc
 app.post('/calc', (req, res) => {
     console.log('post to calc req.body', req.body);
-    let calculation = calculator(req.body);
-    let query = `INSERT INTO "calc_history" ("calculation") VALUES ($1)`;
-    pool.query(query, calculation).then(result => {
-        console.log('calculation successful');
-        res.sendStatus(201);
-    }).catch(err => {
-        console.log('calculation failed:', err);
-        res.sendStatus(500);
-    })
+    let calculation = calculator(req.body.expression);
+    if (calculation) {
+        let query = `INSERT INTO "calc_history" ("calculation") VALUES ($1)`;
+        pool.query(query, [calculation]).then(result => {
+            res.send('calculation successful');
+        }).catch(err => {
+            console.log(err);
+            res.send('calculation failed');
+        })
+    } else {
+        res.send('calculation failed');
+    }
 }); //end of POST route
