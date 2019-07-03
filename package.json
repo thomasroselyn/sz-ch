@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tgroselyn/jquery-server-side-calculator.git"
+    "url": "git+https://github.com/tgroselyn/sz-ch.git"
   },
   "keywords": [],
   "author": "Thomas Roselyn",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tgroselyn/jquery-server-side-calculator/issues"
+    "url": "https://github.com/tgroselyn/sz-ch/issues"
   },
-  "homepage": "https://github.com/tgroselyn/jquery-server-side-calculator#readme",
+  "homepage": "https://github.com/tgroselyn/sz-ch#readme",
   "dependencies": {
     "express": "^4.16.4",
     "http": "0.0.0",
